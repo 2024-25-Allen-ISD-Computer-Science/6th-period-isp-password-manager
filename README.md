@@ -6,10 +6,10 @@ Our ISP Project goal is to make a google chrome extension that stores and saves 
 # Vision Statement
 Our vision is to develop a password manager chrome extension that will be convenient to all of it's users. It will save and store the password of all users and allow for passwords to be easily entered across all databases without having to go through the trouble ofremembering them.
 
-- Environment:
+Environment:
 This project will be worked on by four people and will be mainly done inside of our CS-III class. If deadlines need to be met, we have communication avaliable and will be able to work outside of classroom hours.
 
-- Development:
+Development:
 Development of this extension will be coded in HTML and CSS.
 
 # Contributors
