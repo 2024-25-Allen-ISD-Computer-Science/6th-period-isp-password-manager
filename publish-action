@@ -1,8 +1,0 @@
-uses: Klemensas/chrome-extension-upload-action@$VERSION
-with:
-  refresh-token: 'xxxxxxxxxxxxxxxxxxxxxx'
-  client-id: 'xxxxxxxxxxxxx'
-  client-secret: 'xxxxxxxxxxxx'
-  file-name: './extension.zip'
-  app-id: 'blcoajdcpjkfdlieepaeiemnpjkcblce'
-  publish: true
