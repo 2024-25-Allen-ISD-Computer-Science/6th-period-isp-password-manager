@@ -5,6 +5,13 @@
   "version": "1.0",
   "action": {
     "default_popup": "main-page.html",
-    "default_icon": "lock.jpg"
-  }
+    "default_icon": "lock.png"
+  },
+  "background": {
+      "service_worker": "background.js",
+      "type": "module"
+    },
+  "permissions": [
+    "storage"
+  ]
 }
