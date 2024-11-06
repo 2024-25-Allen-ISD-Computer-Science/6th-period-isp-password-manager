@@ -4,7 +4,7 @@
   "description": "Base Level Extension",
   "version": "1.0",
   "icons": {
-    "128": "lock.jpg"
+    "128": "lock.png"
   },
   "action": {
     "default_popup": "main-page.html",
