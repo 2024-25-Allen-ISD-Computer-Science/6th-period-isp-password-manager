@@ -10,7 +10,8 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": "lock.png"
   },
   "host_permissions": [
     "http://*/*",
