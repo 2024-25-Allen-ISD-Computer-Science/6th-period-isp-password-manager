@@ -18,3 +18,16 @@ document.getElementById('save-button').addEventListener('click', function() {
     console.log('No input to save');
   }
 });
+
+document.getElementById('fetch-button').addEventListener('click', function() {
+
+  chrome.runtime.sendMessage({ action: 'fetchPassword', passwords: result.passwords }, (response) => {
+    // Sends password to background script
+    if (response.success) {
+      console.log('Password fetched');
+    } else {
+      console.log('Failed to fetch password');
+    }
+  });
+
+});
