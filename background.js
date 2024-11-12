@@ -20,10 +20,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.action === 'fetchPassword') {
-      
+      // Grabbing the passwords from chrome.storage.local in the background script
       chrome.storage.local.get(['passwords'], (result) => {
-        // Grabs any saved passwords from Google account, and displays them in console
-        console.log(message.passwords)
-      })
+        if (result.passwords) {
+          console.log('Fetched passwords:', result.passwords);
+          sendResponse({ success: true });
+        } else {
+          console.log('No passwords found');
+          sendResponse({ success: false });
+        }
+      });
+  
+      // Return true to indicate we're sending a response asynchronously
+      return true;
     }
   });

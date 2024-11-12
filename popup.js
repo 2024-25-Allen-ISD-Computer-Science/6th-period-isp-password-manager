@@ -20,14 +20,20 @@ document.getElementById('save-button').addEventListener('click', function() {
 });
 
 document.getElementById('fetch-button').addEventListener('click', function() {
-
-  chrome.runtime.sendMessage({ action: 'fetchPassword', passwords: result.passwords }, (response) => {
-    // Sends password to background script
-    if (response.success) {
-      console.log('Password fetched');
+  // Retrieve saved passwords from local storage in popup.js
+  chrome.storage.local.get(['passwords'], (result) => {
+    if (result.passwords) {
+      // Send the passwords to the background script
+      chrome.runtime.sendMessage({ action: 'fetchPassword', passwords: result.passwords }, (response) => {
+        // Handle the response from the background script
+        if (response.success) {
+          console.log('Password fetched successfully');
+        } else {
+          console.log('Failed to fetch password');
+        }
+      });
     } else {
-      console.log('Failed to fetch password');
+      console.log('No passwords stored in chrome.storage.local');
     }
   });
-
 });
