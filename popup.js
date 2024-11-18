@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordInput = document.getElementById('password-input').value;
     // Gets user input from text box
 
-    if (userInput) {
+    if (passwordInput) {
       chrome.runtime.sendMessage({ action: 'savePassword', password: passwordInput }, (response) => {
         // Sends password to background script
         if (response.success) {
