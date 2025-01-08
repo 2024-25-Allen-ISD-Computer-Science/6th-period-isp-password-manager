@@ -36,10 +36,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.action === 'fetchSpecificPassword') {
-      // Grabbing the passwords from chrome.storage.local in the background script
       chrome.storage.local.get(['passwords'], (result) => {
           if (result.passwords) {
-              const password = result.passwords[message.passwordIndex]; // Assuming passwordIndex is passed in the message
+              const password = result.passwords[message.passwordIndex]; // Use passwordIndex from message
               if (password !== undefined) {
                   console.log('Fetched password:', password);
                   sendResponse({ success: true, password: password });
