@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordFetchInput = document.getElementById('password-fetch-input').value;
 
     if (passwordFetchInput) {
-      if (passwordFetchInput.isDigit()) {
+      if (!isNaN(passwordFetchInput)) {
         chrome.storage.local.get(['passwords'], (result) => {
           if (result.passwords) {
             // Send the passwords to the background script
