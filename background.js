@@ -19,6 +19,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return true;
     }
 
+  /*
     if (message.action === 'fetchPassword') {
       // Grabbing the passwords from chrome.storage.local in the background script
       chrome.storage.local.get(['passwords'], (result) => {
@@ -34,6 +35,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       // Return true to indicate we're sending a response asynchronously
       return true;
     }
+  */
 
     if (message.action === 'fetchSpecificPassword') {
       // Grabbing the passwords from chrome.storage.local in the background script
