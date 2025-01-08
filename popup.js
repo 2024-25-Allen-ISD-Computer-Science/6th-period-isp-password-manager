@@ -40,30 +40,39 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.getElementById('fetch-specific-button').addEventListener('click', function() {
-    // Retrieve saved passwords from local storage in popup.js
+    // Retrieve the value from the input field
     const passwordFetchInput = document.getElementById('password-fetch-input').value;
 
-    if (passwordFetchInput) {
-      if (!isNaN(passwordFetchInput)) {
-        chrome.storage.local.get(['passwords'], (result) => {
-          if (result.passwords) {
-            // Send the passwords to the background script
-            chrome.runtime.sendMessage({ action: 'fetchSpecificPassword', password: result.passwords[passwordFetchInput] }, (response) => {
-              // Handle the response from the background script
-              if (response.success) {
-                console.log('Password fetched successfully');
-              } else {
-                console.log('Failed to fetch password');
-              }
-            });
-          } else {
-            console.log('No passwords stored in chrome.storage.local');
-          }
-        });
-      }
-    }
+    // Check if input is not empty and is a valid number (index)
+    if (passwordFetchInput && !isNaN(passwordFetchInput)) {
+        const index = parseInt(passwordFetchInput, 10);  // Convert to integer
 
-    
+        chrome.storage.local.get(['passwords'], (result) => {
+            if (result.passwords) {
+                // Check if the index is within bounds of the array
+                if (index >= 0 && index < result.passwords.length) {
+                    // Send the specific password to the background script
+                    chrome.runtime.sendMessage({ 
+                        action: 'fetchSpecificPassword', 
+                        password: result.passwords[index] 
+                    }, (response) => {
+                        // Handle the response from the background script
+                        if (response.success) {
+                            console.log('Password fetched successfully');
+                        } else {
+                            console.log('Failed to fetch password');
+                        }
+                    });
+                } else {
+                    console.log('Index out of bounds');
+                }
+            } else {
+                console.log('No passwords stored in chrome.storage.local');
+            }
+        });
+    } else {
+        console.log('Invalid index input');
+    }
   });
 
 });

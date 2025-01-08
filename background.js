@@ -18,8 +18,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       // Keeps the connection up while waiting for asynchronous response
       return true;
     }
-
-  /*
+  
     if (message.action === 'fetchPassword') {
       // Grabbing the passwords from chrome.storage.local in the background script
       chrome.storage.local.get(['passwords'], (result) => {
@@ -35,22 +34,27 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       // Return true to indicate we're sending a response asynchronously
       return true;
     }
-  */
 
     if (message.action === 'fetchSpecificPassword') {
       // Grabbing the passwords from chrome.storage.local in the background script
       chrome.storage.local.get(['passwords'], (result) => {
-        if (result.passwords) {
-          console.log('Fetched password:', result.passwords);
-          sendResponse({ success: true });
-        } else {
-          console.log('No passwords found');
-          sendResponse({ success: false });
-        }
+          if (result.passwords) {
+              const password = result.passwords[message.passwordIndex]; // Assuming passwordIndex is passed in the message
+              if (password !== undefined) {
+                  console.log('Fetched password:', password);
+                  sendResponse({ success: true, password: password });
+              } else {
+                  console.log('Invalid index for password');
+                  sendResponse({ success: false, message: 'Invalid index for password' });
+              }
+          } else {
+              console.log('No passwords found');
+              sendResponse({ success: false, message: 'No passwords found' });
+          }
       });
   
       // Return true to indicate we're sending a response asynchronously
       return true;
     }
 
-  });
+});
