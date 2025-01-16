@@ -20,3 +20,9 @@ Development of this extension will be coded in HTML and CSS.
 
 # Release Notes 10/21/24
 - We began the planning for our project. We created a github and did research on chrome extensions in order get closer to the start of development.
+# Release Notes 1/16/23
+- Main blue print for extension has been made
+- Working on the creation of a Microsoft Azure so the password can actually be saved
+- Now instead of just "Password Manger" we decided to call it "Guardify"
+- There is a "Forgot Password" function if a user forgets their password
+- "Sign up" function is currently in development
