@@ -51,10 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (result.passwords) {
                 // Check if the index is within bounds of the array
                 if (index >= 0 && index < result.passwords.length) {
-                    // Send the password index to the background script, not the password itself
+                    // Send the password index to the background script
                     chrome.runtime.sendMessage({ 
                         action: 'fetchSpecificPassword', 
-                        passwordIndex: index // Send the index, not the password
+                        passwordIndex: index // Send the index
                     }, (response) => {
                         // Handle the response from the background script
                         if (response.success) {
