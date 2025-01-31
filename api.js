@@ -6,15 +6,15 @@ const cors = require('cors');
 const app = express();
 
 // Middleware
-app.use(express.json());  // To parse incoming JSON requests
-app.use(cors());          // Allow cross-origin requests
+app.use(express.json());  
+app.use(cors());          
 
 // MySQL Database Connection
 const db = mysql.createConnection({
-  host: 'phpmyadmin-passwords:3088',   // e.g. localhost or IP of the MySQL server
-  user: '4%6%----089fijjda9813owl',  // Your MySQL username
-  password: '4%6%----iud91731lam13895',  // Your MySQL password
-  database: 'passwords' // Your database name
+  host: 'phpmyadmin-passwords:3088', 
+  user: '4%6%----089fijjda9813owl',  
+  password: '4%6%----iud91731lam13895', 
+  database: 'passwords' 
 });
 
 // Test DB connection
