@@ -1,20 +1,15 @@
 {
-  "manifest_version": 3,
-  "name": "Password Saver Extension",
-  "description": "A simple Chrome extension to save passwords and user input.",
+  "manifest_version": 2,
+  "name": "Password Manager",
+  "description": "Store and manage your passwords securely",
   "version": "1.0",
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage", "activeTab"],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "persistent": false
   },
-  "action": {
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": "lock.png"
-  },
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
-  ]
+  }
 }

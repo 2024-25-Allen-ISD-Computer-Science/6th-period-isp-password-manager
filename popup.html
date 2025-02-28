@@ -3,45 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Password Saver</title>
+  <title>Password Manager</title>
   <style>
-    html {
-    height: 800px;  
-    width: 600px;      
-    }
     body {
-      width: 300px;
-      padding: 10px;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 300px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
     }
     input {
       width: 100%;
       padding: 8px;
       margin-bottom: 10px;
+      box-sizing: border-box;
     }
     button {
-      width: 100%;
-      padding: 10px;
+      padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
       border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
+
   <h3>Save Password</h3>
-  <input type="password" id="password-input" placeholder="Enter password">
-  <button id="save-button">Save Password</button>
 
-  <script src="popup.js"></script>
+  <label for="username">Username</label>
+  <input type="text" id="username" placeholder="Enter username">
 
-  <h3>Fetch Password</h3>
-  <button id="fetch-button">Fetch Password</button>
+  <label for="password">Password</label>
+  <input type="password" id="password" placeholder="Enter password">
 
-  <script src="popup.js"></script>
+  <button id="saveButton">Save</button>
 
-  <h3>Fetch Specific Password</h3>
-  <input id="password-fetch-input" placeholder="Enter password number you want to search">
-  <button id="fetch-specific-button">Fetch Specific Password</button>
+  <div id="responseMessage" class="message"></div>
 
   <script src="popup.js"></script>
 </body>

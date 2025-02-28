@@ -1,82 +1,59 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Save button event listener
-  document.getElementById('save-button').addEventListener('click', function() {
-    // On save-button click execute code
-    const passwordInput = document.getElementById('password-input').value;
-    // Gets user input from text box
+// Example encryption library (optional)
+const CryptoJS = require('crypto-js'); // You can use other libraries as well
 
-    if (passwordInput) {
-      chrome.runtime.sendMessage({ action: 'savePassword', password: passwordInput }, (response) => {
-        // Sends password to background script
-        if (response.success) {
-          console.log('Password saved');
-        } else {
-          console.log('Failed to save password');
-        }
-      });
-    } else {
-      console.log('No input to save');
-    }
+// Secret key used for encryption (should match the one on the backend)
+const secretKey = 'mySecretKey';
+
+// Encrypt the password before sending
+function encryptPassword(password) {
+  const encrypted = CryptoJS.AES.encrypt(password, secretKey).toString();
+  return encrypted;
+}
+
+// Handle form submission
+function saveCredentials() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  if (!username || !password) {
+    displayMessage("Please enter both username and password.", "error");
+    return;
+  }
+
+  // Encrypt the password
+  const encryptedPassword = encryptPassword(password);
+
+  fetch('http://localhost:3000/api/passwords', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: username,
+      password: encryptedPassword
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    displayMessage("Password saved successfully!", "success");
+    console.log(data);
+  })
+  .catch(error => {
+    displayMessage("Error saving password.", "error");
+    console.error("Error:", error);
   });
+}
 
-  // Fetch button event listener
-  document.getElementById('fetch-button').addEventListener('click', function() {
-    // Retrieve saved passwords from local storage in popup.js
-    chrome.storage.local.get(['passwords'], (result) => {
-      if (result.passwords) {
-        // Send the passwords to the background script
-        chrome.runtime.sendMessage({ action: 'fetchPassword', passwords: result.passwords }, (response) => {
-          // Handle the response from the background script
-          if (response.success) {
-            console.log('Passwords fetched successfully');
-          } else {
-            console.log('Failed to fetch passwords');
-          }
-        });
-      } else {
-        console.log('No passwords stored in chrome.storage.local');
-      }
-    });
-  });
+// Display success or error message
+function displayMessage(message, type) {
+  const messageDiv = document.getElementById('responseMessage');
+  messageDiv.textContent = message;
+  if (type === "success") {
+    messageDiv.style.color = "green";
+  } else {
+    messageDiv.style.color = "red";
+  }
+}
 
-  document.getElementById('fetch-specific-button').addEventListener('click', function() {
-    // Retrieve the value from the input field
-    const passwordFetchInput = document.getElementById('password-fetch-input').value;
-
-    // Check if input is not empty and is a valid number (index)
-    if (passwordFetchInput && !isNaN(passwordFetchInput)) {
-        const index = parseInt(passwordFetchInput, 10);  // Convert to integer
-
-        chrome.storage.local.get(['passwords'], (result) => {
-            if (result.passwords) {
-                // Check if the index is within bounds of the array
-                if (index >= 0 && index < result.passwords.length) {
-                    // Send the password index to the background script
-                    chrome.runtime.sendMessage({ 
-                        action: 'fetchSpecificPassword', 
-                        passwordIndex: index // Send the index
-                    }, (response) => {
-                        // Handle the response from the background script
-                        if (response.success) {
-                            console.log('Password fetched successfully');
-                            console.log('Password:', response.password);  // Log the fetched password
-                        } else {
-                            console.log('Failed to fetch password');
-                            if (response.message) {
-                                console.log('Error message:', response.message);  // Log specific error message
-                            }
-                        }
-                    });
-                } else {
-                    console.log('Index out of bounds');
-                }
-            } else {
-                console.log('No passwords stored in chrome.storage.local');
-            }
-        });
-    } else {
-        console.log('Invalid index input');
-    }
-  });
-
-});
+// Event listener for the save button
+document.getElementById('saveButton').addEventListener('click', saveCredentials);

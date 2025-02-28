@@ -1,13 +1,17 @@
-require('dotenv').config();
+require('dotenv').config();  // For loading environment variables
 const express = require('express');
-const db = require('./db'); 
+const cors = require('cors');
+const usersRouter = require('./routes/users');  // Import the users route
 
 const app = express();
 const port = 3000;
 
-app.use(express.json()); 
+// Middleware
+app.use(express.json());  // Body parser middleware for JSON
+app.use(cors());          // Enable Cross-Origin Resource Sharing
 
-// Endpoints go here
+// Use the users routes
+app.use('/api/users', usersRouter);  // This links your routes
 
 // Start the server
 app.listen(port, () => {
