@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Password Manager",
   "description": "Store and manage your passwords securely",
   "version": "1.0",
