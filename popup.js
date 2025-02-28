@@ -1,5 +1,9 @@
 import CryptoJS from 'crypto-js';
 
+const encryptedPassword = CryptoJS.AES.encrypt("myPassword", "mySecretKey").toString();
+const decryptedPassword = CryptoJS.AES.decrypt(encryptedPassword, "mySecretKey").toString(CryptoJS.enc.Utf8);
+
+
 const secretKey = 'mySecretKey';
 
 // Encrypt the password before sending to the server
