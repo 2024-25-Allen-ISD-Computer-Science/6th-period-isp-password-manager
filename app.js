@@ -1,7 +1,7 @@
-require('dotenv').config();  // For loading environment variables
-const express = require('express');
-const cors = require('cors');
-const usersRouter = require('./routes/users');  // Import the users route
+import 'dotenv/config';  // For loading environment variables
+import express from 'express';
+import cors from 'cors';
+import usersRouter from './routes/users.js';  // Import the users route (with .js extension)
 
 const app = express();
 const port = 3000;

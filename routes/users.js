@@ -1,12 +1,13 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const db = require('../db');  // Use the connection pool from db.js
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import db from '../db.js'; // Use the connection pool from db.js
+
 const router = express.Router();
 
 // Hash the password before saving it to the database
 const hashPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10);  // Generate a salt with 10 rounds
-  const hashedPassword = await bcrypt.hash(password, salt);  // Hash the password
+  const salt = await bcrypt.genSalt(10); // Generate a salt with 10 rounds
+  const hashedPassword = await bcrypt.hash(password, salt); // Hash the password
   return hashedPassword;
 };
 
@@ -88,4 +89,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router; // Exporting the router using ES module syntax

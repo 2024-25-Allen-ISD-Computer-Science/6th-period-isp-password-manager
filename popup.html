@@ -7,49 +7,33 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 300px;
+      margin: 20px;
     }
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
-    input {
+    input, button {
       width: 100%;
-      padding: 8px;
       margin-bottom: 10px;
-      box-sizing: border-box;
+      padding: 10px;
     }
     button {
-      padding: 10px 20px;
+      cursor: pointer;
       background-color: #4CAF50;
       color: white;
       border: none;
-      cursor: pointer;
     }
     button:hover {
       background-color: #45a049;
     }
-    .message {
+    #responseMessage {
       margin-top: 10px;
-      font-size: 14px;
     }
   </style>
 </head>
 <body>
-
   <h3>Save Password</h3>
-
-  <label for="username">Username</label>
-  <input type="text" id="username" placeholder="Enter username">
-
-  <label for="password">Password</label>
-  <input type="password" id="password" placeholder="Enter password">
-
-  <button id="saveButton">Save</button>
-
-  <div id="responseMessage" class="message"></div>
-
-  <script src="popup.js"></script>
+  <input type="text" id="username" placeholder="Enter Username" />
+  <input type="password" id="password" placeholder="Enter Password" />
+  <button id="saveButton">Save Password</button>
+  <div id="responseMessage"></div>
+  <script type="module" src="popup.js"></script>
 </body>
 </html>

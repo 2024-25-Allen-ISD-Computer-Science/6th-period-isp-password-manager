@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+import mysql from 'mysql2';
 
 // Create a connection pool (recommended for better performance)
 const pool = mysql.createPool({
@@ -10,4 +10,4 @@ const pool = mysql.createPool({
 
 const promisePool = pool.promise();
 
-module.exports = promisePool;
+export default promisePool;

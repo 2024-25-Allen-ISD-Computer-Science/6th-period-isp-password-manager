@@ -1,16 +1,14 @@
-// Example encryption library (optional)
-const CryptoJS = require('crypto-js'); // You can use other libraries as well
+import CryptoJS from 'crypto-js';
 
-// Secret key used for encryption (should match the one on the backend)
 const secretKey = 'mySecretKey';
 
-// Encrypt the password before sending
+// Encrypt the password before sending to the server
 function encryptPassword(password) {
   const encrypted = CryptoJS.AES.encrypt(password, secretKey).toString();
   return encrypted;
 }
 
-// Handle form submission
+// Handle the form submission when the user clicks "Save"
 function saveCredentials() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
