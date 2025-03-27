@@ -7,56 +7,65 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Guardify</h1>
-        </header>
-        <p class="subtext">Endless Security Is One Click Away.</p>
 
+    <div class="main-wrapper">
+        
+        <!-- Sign-Up Section -->
+        <div class="container">
+            <header>
+                <h1>Guardify</h1>
+            </header>
+            <p class="subtext">Endless Security Is One Click Away.</p>
 
-        <div class="form-container">
-            <h2>Create Your Account</h2>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
-                </div>
-               
-                <div class="form-group">
-                    <label for="password">Master Password</label>
-                    <input type="password" id="password" placeholder="Create a strong password" required>
-                    <div class="password-tip">
-                        <ul>
-                            <li>At Least 8 Characters</li>
-                            <li>At Least One Number</li>
-                            <li>At Least One Capital Letter</li>
-                            <li>Special Characters Can Be Included, But Are Not Required (@, !, #, etc.)</li>
-                        </ul>
+            <div class="form-container">
+                <h2>Create Your Account</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
                     </div>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Master Password</label>
+                        <input type="password" id="password" placeholder="Create a strong password" required>
+                        <div class="password-tip">
+                            <ul>
+                                <li>At Least 8 Characters</li>
+                                <li>At Least One Number</li>
+                                <li>At Least One Capital Letter</li>
+                                <li>Special Characters Can Be Included, But Are Not Required (@, !, #, etc.)</li>
+                            </ul>
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="Re-enter your password" required>
+                    </div>
+                    <button type="submit">Create Account</button>
+                </form>
+            </div>
 
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" placeholder="Re-enter your password" required>
-                </div>
-                <button type="submit">Create Account</button>
-            </form>
+            <div class="login-link">
+                <p>Already have an account? Download our Chrome Extension and Log In There!</p>
+            </div>
         </div>
-        <div class="login-link">
-        <p>Already have an account? Download our Chrome Extension and Log In There!</p>
-        </div>
-    </div>
-    <div class="why-choose">
-        <h2>Why Choose Password Manager?</h2>
-        <ul>
-            <li>🔒 Passwords are Safe and Secure</li>
-            <li>📁 More Organization for all Users, Eliminating Stress</li>
-            <li>⚡ Can Save and Fill Passwords</li>
-            <li>🔑 Simple, Easy to Use, and Free</li>
-        </ul>
-    </div>
 
+        <!-- Why Choose Guardify Section -->
+        <div class="why-choose">
+            <h2>Why Choose Guardify?</h2>
+            <ul>
+                <li>🔒 Passwords are Safe and Secure</li>
+                <li>📁 More Organization for all Users, Eliminating Stress</li>
+                <li>⚡ Can Save and Fill Passwords</li>
+                <li>🔑 Simple, Easy to Use, and Free</li>
+                <li>🌍 Guardify works across devices, letting you securely log in whether you're on a phone, tablet, or computer.</li>
+                <li>📢 Get notified if any of your stored passwords appear in a data breach.</li>
+                <li>⚙️ Save once, access anywhere. No more manually typing passwords.</li>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
