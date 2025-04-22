@@ -1,17 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Password Manager",
-  "description": "Store and manage your passwords securely",
+  "name": "Simple Password Manager",
   "version": "1.0",
-  "permissions": ["storage", "activeTab"],
-  "background": {
-    "service_worker": "background.js"
-  },
+  "description": "A simple password manager",
+  "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "lock.png"
-  },
-  "host_permissions": [
-    "http://localhost:3000/*"
-  ]
+    "default_icon": {
+      "16": "icon.png"
+    }
+  }
 }

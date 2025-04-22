@@ -1,61 +1,36 @@
-import CryptoJS from 'crypto-js';
-
-const encryptedPassword = CryptoJS.AES.encrypt("myPassword", "mySecretKey").toString();
-const decryptedPassword = CryptoJS.AES.decrypt(encryptedPassword, "mySecretKey").toString(CryptoJS.enc.Utf8);
-
-
-const secretKey = 'mySecretKey';
-
-// Encrypt the password before sending to the server
-function encryptPassword(password) {
-  const encrypted = CryptoJS.AES.encrypt(password, secretKey).toString();
-  return encrypted;
-}
-
-// Handle the form submission when the user clicks "Save"
-function saveCredentials() {
+document.getElementById('saveBtn').addEventListener('click', () => {
+  const website = document.getElementById('website').value;
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
-  if (!username || !password) {
-    displayMessage("Please enter both username and password.", "error");
+  if (!website || !username || !password) {
+    alert('Please fill in all fields.');
     return;
   }
 
-  // Encrypt the password
-  const encryptedPassword = encryptPassword(password);
+  chrome.storage.local.get({ credentials: [] }, (result) => {
+    const credentials = result.credentials;
+    credentials.push({ website, username, password });
+    chrome.storage.local.set({ credentials }, () => {
+      displayCredentials();
+      document.getElementById('website').value = '';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    });
+  });
+});
 
-  fetch('http://localhost:3000/api/passwords', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username: username,
-      password: encryptedPassword
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    displayMessage("Password saved successfully!", "success");
-    console.log(data);
-  })
-  .catch(error => {
-    displayMessage("Error saving password.", "error");
-    console.error("Error:", error);
+function displayCredentials() {
+  chrome.storage.local.get({ credentials: [] }, (result) => {
+    const savedList = document.getElementById('savedList');
+    savedList.innerHTML = '';
+
+    result.credentials.forEach((cred, index) => {
+      const item = document.createElement('div');
+      item.innerHTML = `<strong>${cred.website}</strong><br>User: ${cred.username}<br>Pass: ${cred.password}<hr>`;
+      savedList.appendChild(item);
+    });
   });
 }
 
-// Display success or error message
-function displayMessage(message, type) {
-  const messageDiv = document.getElementById('responseMessage');
-  messageDiv.textContent = message;
-  if (type === "success") {
-    messageDiv.style.color = "green";
-  } else {
-    messageDiv.style.color = "red";
-  }
-}
-
-// Event listener for the save button
-document.getElementById('saveButton').addEventListener('click', saveCredentials);
+document.addEventListener('DOMContentLoaded', displayCredentials);

@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 250px;
+    padding: 10px;
+  }
+  
+  input {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 6px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  #savedList {
+    margin-top: 10px;
+  }
+  
