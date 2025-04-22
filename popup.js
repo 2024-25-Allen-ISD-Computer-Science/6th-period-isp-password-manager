@@ -27,7 +27,7 @@ function displayCredentials() {
 
     result.credentials.forEach((cred, index) => {
       const item = document.createElement('div');
-      item.innerHTML = `<strong>${cred.website}</strong><br>User: ${cred.username}<br>Pass: ${cred.password}<hr>`;
+      item.innerHTML = `<strong>${cred.website}</strong><br>Username: ${cred.username}<br>Password: ${cred.password}<hr>`;
       savedList.appendChild(item);
     });
   });
